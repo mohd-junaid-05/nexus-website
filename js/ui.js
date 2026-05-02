@@ -41,14 +41,14 @@ function renderCarousel() {
   if (!track || !INTRO_SLIDES) return;
 
   track.innerHTML = INTRO_SLIDES.map((slide, i) => `
-    <div class="carousel-slide" id="slide-${i}">
-      <div class="carousel-slide-header">
-        <div class="carousel-slide-icon" style="background: ${slide.color}20; color: ${slide.color};">
+    <div class="carousel-slide px-3" id="slide-${i}" style="min-width: 100%;">
+      <div class="carousel-slide-header d-flex align-items-center mb-3 gap-3">
+        <div class="carousel-slide-icon flex-shrink-0 rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; font-size: 20px; background: ${slide.color}20; color: ${slide.color};">
           <i class="${slide.icon}"></i>
         </div>
-        <h3>${slide.title}</h3>
+        <h3 class="h4 mb-0 fw-bold text-dark" style="font-family: 'Outfit', sans-serif;">${slide.title}</h3>
       </div>
-      <p>${slide.content}</p>
+      <p class="fs-6 text-secondary mb-0" style="line-height: 1.7;">${slide.content}</p>
     </div>
   `).join('');
 
@@ -109,16 +109,33 @@ function selectStage(index) {
 
 function switchTab(tabName) {
   document.querySelectorAll('.pres-tab-btn').forEach(b => {
-    if(b.dataset.tab) b.classList.toggle('active', b.dataset.tab === tabName);
+    if(b.dataset.tab) {
+      b.classList.toggle('active', b.dataset.tab === tabName);
+      if (b.dataset.tab === tabName) {
+        b.classList.add('btn-dark');
+        b.classList.remove('btn-outline-secondary');
+      } else {
+        b.classList.remove('btn-dark');
+        b.classList.add('btn-outline-secondary');
+      }
+    }
   });
   document.querySelectorAll('.pres-content').forEach(c => {
     c.classList.toggle('active', c.id === `tab-content-${tabName}`);
+    c.style.display = c.id === `tab-content-${tabName}` ? 'block' : 'none';
   });
 }
 
 function switchSubPrompt(index) {
   document.querySelectorAll('.sub-prompt-btn').forEach((b, i) => {
     b.classList.toggle('active', i === index);
+    if (i === index) {
+      b.classList.add('btn-dark');
+      b.classList.remove('btn-outline-secondary');
+    } else {
+      b.classList.remove('btn-dark');
+      b.classList.add('btn-outline-secondary');
+    }
   });
   document.querySelectorAll('.sub-prompt-content').forEach((c, i) => {
     c.style.display = i === index ? 'block' : 'none';
@@ -163,14 +180,16 @@ function renderResultHistory(index) {
   }
   
   container.innerHTML = results.map((res, i) => `
-    <div class="res-history-item">
-      <div class="res-history-header">
-        <h5>${res.title}</h5>
-        <button class="res-delete-btn" onclick="deleteResult(${index}, ${i})" title="Delete result">
-          <i class="fa-solid fa-trash"></i>
-        </button>
+    <div class="card shadow-sm border mb-3" style="animation: fadeIn 0.3s; border-radius: 1rem;">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h5 class="fw-bold fs-5 mb-0" style="font-family: 'Outfit', sans-serif;">${res.title}</h5>
+          <button class="btn btn-link text-danger p-0 border-0" onclick="deleteResult(${index}, ${i})" title="Delete result">
+            <i class="fa-solid fa-trash fs-5"></i>
+          </button>
+        </div>
+        <p class="text-secondary mb-0 fs-6" style="white-space: pre-wrap; line-height: 1.6;">${res.body}</p>
       </div>
-      <p>${res.body}</p>
     </div>
   `).join('');
 }
@@ -186,17 +205,20 @@ function renderPresentationCard(index) {
     ? `<span class="tag-pill"><i class="fa-solid fa-robot"></i> ${stageData.agent}</span>`
     : '';
 
-  // Checklist Tab (Cards)
   const cardsHTML = stageData.cards.map(c => `
-    <div class="info-card">
-      <i class="${c.icon}" style="color: ${col.hex}"></i>
-      <h4>${c.title}</h4>
-      <p>${c.text}</p>
+    <div class="col-12 col-md-6 mb-4">
+      <div class="card h-100 shadow-sm border" style="border-radius: 1rem; transition: transform 0.2s;">
+        <div class="card-body p-4">
+          <i class="${c.icon} fs-4 mb-3" style="color: ${col.hex}"></i>
+          <h4 class="h5 fw-bold mb-2 text-dark">${c.title}</h4>
+          <p class="card-text text-secondary fs-6 mb-0">${c.text}</p>
+        </div>
+      </div>
     </div>
   `).join('');
 
-  const studentHTML = stageData.studentMindset.map(t => `<li><i class="fa-solid fa-xmark"></i> ${t}</li>`).join('');
-  const founderHTML = stageData.founderMindset.map(s => `<li><i class="fa-solid fa-check"></i> ${s}</li>`).join('');
+  const studentHTML = stageData.studentMindset.map(t => `<li class="d-flex gap-2 text-secondary fs-6"><i class="fa-solid fa-xmark text-danger mt-1"></i> <span>${t}</span></li>`).join('');
+  const founderHTML = stageData.founderMindset.map(s => `<li class="d-flex gap-2 text-secondary fs-6"><i class="fa-solid fa-check text-success mt-1"></i> <span>${s}</span></li>`).join('');
 
   // AI Prompts Tab
   let promptTabs = '';
@@ -204,150 +226,178 @@ function renderPresentationCard(index) {
   
   if (promptData.prompts && promptData.prompts.length > 0) {
     promptTabs = promptData.prompts.map((p, i) => 
-      `<button class="pres-tab-btn sub-prompt-btn ${i===0?'active':''}" onclick="switchSubPrompt(${i})">${p.label}</button>`
+      `<button class="btn ${i===0?'btn-dark':'btn-outline-secondary'} rounded-pill px-4 sub-prompt-btn ${i===0?'active':''}" onclick="switchSubPrompt(${i})">${p.label}</button>`
     ).join('');
     
     promptContents = promptData.prompts.map((p, i) => `
       <div class="sub-prompt-content" style="display: ${i===0?'block':'none'}">
-        <p style="color: var(--text2); margin-bottom: 12px; font-size: 13.5px;"><i class="fa-solid fa-lightbulb" style="color: var(--gold)"></i> ${p.importance}</p>
-        <div class="code-box-wrapper" style="position: relative;">
-          <button class="copy-btn" onclick='copyPrompt(${JSON.stringify(p.text)})' title="Copy Prompt">
+        <p class="text-secondary mb-3 fs-6"><i class="fa-solid fa-lightbulb" style="color: var(--gold)"></i> ${p.importance}</p>
+        <div class="code-box-wrapper position-relative">
+          <button class="copy-btn btn btn-sm btn-dark position-absolute top-0 end-0 m-3" onclick='copyPrompt(${JSON.stringify(p.text)})' title="Copy Prompt">
             <i class="fa-regular fa-copy"></i> Copy
           </button>
-          <div class="code-box" style="margin-top: 0;">${highlightBrackets(p.text)}</div>
+          <div class="code-box text-light p-4 rounded-3" style="background: #111827; font-family: 'JetBrains Mono', monospace; font-size: 14px; white-space: pre-wrap; overflow-x: auto;">${highlightBrackets(p.text)}</div>
         </div>
       </div>
     `).join('');
   } else {
-     promptContents = `<p>No prompts available for this stage.</p>`;
+     promptContents = `<p class="fs-6 text-secondary">No prompts available for this stage.</p>`;
   }
 
   // Agent setup if any
   let agentSetupHTML = '';
   if (promptData.agentSetup && promptData.agentSetup.has) {
     agentSetupHTML = `
-      <div style="margin-bottom: 24px; padding: 16px; background: var(--bg3); border-radius: var(--r-md);">
-        <h4 style="margin-bottom: 8px; font-size: 14px;"><i class="fa-solid fa-robot"></i> System Prompt (${promptData.agentSetup.name})</h4>
-        <p style="font-size: 13px; color: var(--text2); margin-bottom: 12px;">${promptData.agentSetup.importance}</p>
-        <div class="code-box-wrapper" style="position: relative;">
-          <button class="copy-btn" onclick='copyPrompt(${JSON.stringify(promptData.agentSetup.prompt)})' title="Copy System Prompt">
-            <i class="fa-regular fa-copy"></i> Copy
-          </button>
-          <div class="code-box" style="margin-top: 0;">${highlightBrackets(promptData.agentSetup.prompt)}</div>
+      <div class="card bg-light border-0 mb-4" style="border-radius: 1rem;">
+        <div class="card-body p-4">
+          <h4 class="h5 fw-bold mb-2"><i class="fa-solid fa-robot"></i> System Prompt (${promptData.agentSetup.name})</h4>
+          <p class="text-secondary fs-6 mb-3">${promptData.agentSetup.importance}</p>
+          <div class="code-box-wrapper position-relative">
+            <button class="copy-btn btn btn-sm btn-dark position-absolute top-0 end-0 m-3" onclick='copyPrompt(${JSON.stringify(promptData.agentSetup.prompt)})' title="Copy System Prompt">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+            <div class="code-box text-light p-4 rounded-3" style="background: #111827; font-family: 'JetBrains Mono', monospace; font-size: 14px; white-space: pre-wrap; overflow-x: auto;">${highlightBrackets(promptData.agentSetup.prompt)}</div>
+          </div>
         </div>
       </div>
     `;
   }
 
   container.innerHTML = `
-    <div class="pres-card">
-      <div class="pres-header">
-        <div class="pres-num" style="background:${col.light}; color:${col.hex}">${stageData.num}</div>
-        <div class="pres-title-wrap">
-          <h2>${stageData.title}</h2>
-          <p>${stageData.subtitle}</p>
-          <div class="pres-meta">
-            <span class="tag-pill" style="background:${col.light}; color:${col.hex}">${stageData.tag}</span>
+    <div class="card shadow-lg border-0 mb-5" style="border-radius: 1.5rem; overflow: hidden; animation: fadeIn 0.4s ease;">
+      <div class="card-header bg-white border-bottom p-4 p-md-5 d-flex flex-column flex-md-row gap-4 align-items-md-start">
+        <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 60px; height: 60px; background:${col.light}; color:${col.hex}; font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700;">
+          ${stageData.num}
+        </div>
+        <div>
+          <h2 class="display-6 fw-bold mb-2" style="font-family: 'Outfit', sans-serif;">${stageData.title}</h2>
+          <p class="fs-5 text-secondary mb-3">${stageData.subtitle}</p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge rounded-pill py-2 px-3 fs-6 fw-semibold" style="background:${col.light}; color:${col.hex}">${stageData.tag}</span>
             ${agentPill}
           </div>
         </div>
       </div>
 
-      <div class="pres-body">
-        <div class="pres-tabs">
-          <button class="pres-tab-btn active" data-tab="checklist" onclick="switchTab('checklist')">Core Concepts</button>
-          <button class="pres-tab-btn" data-tab="prompts" onclick="switchTab('prompts')">AI Prompts</button>
-          <button class="pres-tab-btn" data-tab="mindset" onclick="switchTab('mindset')">Mindset Shift</button>
-          <button class="pres-tab-btn" data-tab="resources" onclick="switchTab('resources')">Resources</button>
-          ${stageData.ideaBank ? `<button class="pres-tab-btn" data-tab="ideabank" onclick="switchTab('ideabank')">Idea Bank</button>` : ''}
+      <div class="card-body p-4 p-md-5">
+        <div class="d-flex gap-2 overflow-auto pb-3 mb-4 border-bottom pres-tabs-container">
+          <button class="btn btn-dark pres-tab-btn active text-nowrap rounded-pill px-4" data-tab="checklist" onclick="switchTab('checklist')">Core Concepts</button>
+          <button class="btn btn-outline-secondary pres-tab-btn text-nowrap rounded-pill px-4" data-tab="prompts" onclick="switchTab('prompts')">AI Prompts</button>
+          <button class="btn btn-outline-secondary pres-tab-btn text-nowrap rounded-pill px-4" data-tab="mindset" onclick="switchTab('mindset')">Mindset Shift</button>
+          <button class="btn btn-outline-secondary pres-tab-btn text-nowrap rounded-pill px-4" data-tab="resources" onclick="switchTab('resources')">Resources</button>
+          ${stageData.ideaBank ? `<button class="btn btn-outline-secondary pres-tab-btn text-nowrap rounded-pill px-4" data-tab="ideabank" onclick="switchTab('ideabank')">Idea Bank</button>` : ''}
         </div>
         
         <!-- Tab 1: Checklist -->
-        <div class="pres-content active" id="tab-content-checklist">
-          <p style="color: var(--text2); margin-bottom: 20px; font-size: 14px;">${stageData.why}</p>
-          <div class="cards-grid">${cardsHTML}</div>
+        <div class="pres-content active" id="tab-content-checklist" style="display: block;">
+          <p class="text-secondary mb-4 fs-6" style="line-height: 1.7;">${stageData.why}</p>
+          <div class="row g-4">${cardsHTML}</div>
         </div>
 
         <!-- Tab 2: Prompts -->
-        <div class="pres-content" id="tab-content-prompts">
+        <div class="pres-content" id="tab-content-prompts" style="display: none;">
           ${agentSetupHTML}
-          ${promptTabs ? `<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">${promptTabs}</div>` : ''}
+          ${promptTabs ? `<div class="d-flex gap-2 flex-wrap mb-4">${promptTabs}</div>` : ''}
           ${promptContents}
         </div>
 
         <!-- Tab 3: Mindset Shift -->
-        <div class="pres-content" id="tab-content-mindset">
-          <p style="color: var(--text2); margin-bottom: 20px; font-size: 14px;">${stageData.importance}</p>
-          <div class="flex-row">
-            <div class="list-box bad flex-1">
-              <h4>Student Mindset</h4>
-              <ul>${studentHTML}</ul>
+        <div class="pres-content" id="tab-content-mindset" style="display: none;">
+          <p class="text-secondary mb-4 fs-6">${stageData.importance}</p>
+          <div class="row g-4">
+            <div class="col-12 col-md-6">
+              <div class="card h-100 shadow-sm border-danger border-opacity-25" style="border-radius: 1rem;">
+                <div class="card-body p-4">
+                  <h4 class="text-danger fs-6 text-uppercase mb-3 fw-bold" style="letter-spacing: 1px;">Student Mindset</h4>
+                  <ul class="list-unstyled d-flex flex-column gap-3 mb-0">${studentHTML}</ul>
+                </div>
+              </div>
             </div>
-            <div class="list-box good flex-1">
-              <h4>Founder Mindset</h4>
-              <ul>${founderHTML}</ul>
+            <div class="col-12 col-md-6">
+              <div class="card h-100 shadow-sm border-success border-opacity-25" style="border-radius: 1rem;">
+                <div class="card-body p-4">
+                  <h4 class="text-success fs-6 text-uppercase mb-3 fw-bold" style="letter-spacing: 1px;">Founder Mindset</h4>
+                  <ul class="list-unstyled d-flex flex-column gap-3 mb-0">${founderHTML}</ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Tab 4: Resources -->
-        <div class="pres-content" id="tab-content-resources">
-          <div style="background: ${col.light}; border: 1px solid ${col.border}; border-radius: var(--r-md); padding: 24px;">
-             <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; color: ${col.hex}; margin-bottom: 16px;">
-               <i class="fa-solid fa-link"></i> ${stageData.resources?.title || 'Resources'}
-             </h3>
-             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
-               ${stageData.resources?.links?.map(link => `
-                 <li style="background: var(--bg); border: 1px solid var(--border); padding: 12px; border-radius: var(--r-sm);">
-                   <a href="${link.url}" target="_blank" style="color: ${col.hex}; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
-                     ${link.name} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i>
-                   </a>
-                   <p style="font-size: 13px; color: var(--text2); margin: 0;">${link.desc}</p>
-                 </li>
-               `).join('') || '<p>No resources available.</p>'}
-             </ul>
+        <div class="pres-content" id="tab-content-resources" style="display: none;">
+          <div class="card shadow-sm border-0" style="background: ${col.light}; border-radius: 1.5rem;">
+             <div class="card-body p-4 p-md-5">
+               <h3 class="fw-bold mb-4 d-flex align-items-center gap-2" style="font-family: 'Outfit', sans-serif; color: ${col.hex};">
+                 <i class="fa-solid fa-link"></i> ${stageData.resources?.title || 'Resources'}
+               </h3>
+               <div class="row g-3">
+                 ${stageData.resources?.links?.map(link => `
+                   <div class="col-12">
+                     <div class="card bg-white border shadow-sm" style="border-radius: 1rem;">
+                       <div class="card-body p-3 p-md-4">
+                         <a href="${link.url}" target="_blank" class="fw-bold text-decoration-none d-inline-flex align-items-center gap-2 mb-2 fs-5" style="color: ${col.hex};">
+                           ${link.name} <i class="fa-solid fa-arrow-up-right-from-square fs-6"></i>
+                         </a>
+                         <p class="text-secondary mb-0 fs-6">${link.desc}</p>
+                       </div>
+                     </div>
+                   </div>
+                 `).join('') || '<p>No resources available.</p>'}
+               </div>
+             </div>
           </div>
         </div>
 
         <!-- Tab 5: Idea Bank (Optional) -->
         ${stageData.ideaBank ? `
-        <div class="pres-content" id="tab-content-ideabank">
-          <div style="background: ${col.light}; border: 1px solid ${col.border}; border-radius: var(--r-md); padding: 24px;">
-             <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; color: ${col.hex}; margin-bottom: 16px;">
-               <i class="fa-solid fa-lightbulb"></i> ${stageData.ideaBank.title}
-             </h3>
-             <div style="display: flex; flex-direction: column; gap: 16px;">
-               ${stageData.ideaBank.categories.map(cat => `
-                 <div style="background: var(--bg); border: 1px solid var(--border); padding: 16px; border-radius: var(--r-sm);">
-                   <h4 style="color: ${col.hex}; margin-bottom: 12px; font-size: 15px;"><i class="fa-solid fa-folder-open"></i> ${cat.name}</h4>
-                   <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-                     ${cat.ideas.map(idea => `
-                       <li style="font-size: 13.5px; color: var(--text2); display: flex; align-items: flex-start; gap: 8px;">
-                         <i class="fa-solid fa-arrow-right" style="color: ${col.hex}; margin-top: 4px; font-size: 10px;"></i>
-                         <span>${idea}</span>
-                       </li>
-                     `).join('')}
-                   </ul>
-                 </div>
-               `).join('')}
+        <div class="pres-content" id="tab-content-ideabank" style="display: none;">
+          <div class="card shadow-sm border-0" style="background: ${col.light}; border-radius: 1.5rem;">
+             <div class="card-body p-4 p-md-5">
+               <h3 class="fw-bold mb-4 d-flex align-items-center gap-2" style="font-family: 'Outfit', sans-serif; color: ${col.hex};">
+                 <i class="fa-solid fa-lightbulb"></i> ${stageData.ideaBank.title}
+               </h3>
+               <div class="row g-4">
+                 ${stageData.ideaBank.categories.map(cat => `
+                   <div class="col-12 col-md-6">
+                     <div class="card h-100 bg-white border shadow-sm" style="border-radius: 1rem;">
+                       <div class="card-body p-4">
+                         <h4 class="fw-bold mb-3 fs-5 d-flex align-items-center gap-2" style="color: ${col.hex};"><i class="fa-solid fa-folder-open"></i> ${cat.name}</h4>
+                         <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
+                           ${cat.ideas.map(idea => `
+                             <li class="d-flex align-items-start gap-2 text-secondary fs-6">
+                               <i class="fa-solid fa-arrow-right mt-1" style="color: ${col.hex}; font-size: 12px;"></i>
+                               <span>${idea}</span>
+                             </li>
+                           `).join('')}
+                         </ul>
+                       </div>
+                     </div>
+                   </div>
+                 `).join('')}
+               </div>
              </div>
           </div>
         </div>` : ''}
 
       </div>
 
-      <div class="result-section">
-        <div class="result-header">
-          <h4><i class="fa-solid fa-floppy-disk"></i> Save Stage Result</h4>
-          <p>Store the final AI output for this stage so you don't lose it.</p>
+      <div class="result-section bg-light border-top p-4 p-md-5">
+        <div class="mb-4">
+          <h4 class="fw-bold d-flex align-items-center gap-2 mb-2 fs-5"><i class="fa-solid fa-floppy-disk"></i> Save Stage Result</h4>
+          <p class="text-secondary fs-6 mb-0">Store the final AI output for this stage so you don't lose it.</p>
         </div>
-        <div class="res-history" id="res-history-container-${index}" style="margin-bottom: 16px;">
+        <div class="res-history mb-4" id="res-history-container-${index}">
           <!-- Saved items render here -->
         </div>
-        <div class="result-inputs">
-          <input type="text" class="res-title-input" placeholder="Result Title (e.g., Final Opportunity Statement)" id="res-title-${index}">
-          <textarea class="res-body-textarea" placeholder="Paste the final output from your AI agent here..." id="res-body-${index}" rows="4"></textarea>
-          <button class="res-save-btn" onclick="saveResult(${index})">Save Result</button>
+        <div class="card shadow-sm border bg-white p-4" style="border-radius: 1rem;">
+          <div class="mb-3">
+            <input type="text" class="form-control form-control-lg fs-6" placeholder="Result Title (e.g., Final Opportunity Statement)" id="res-title-${index}">
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control fs-6" placeholder="Paste the final output from your AI agent here..." id="res-body-${index}" rows="4"></textarea>
+          </div>
+          <button class="btn btn-dark fw-bold px-4 py-2" onclick="saveResult(${index})">Save Result</button>
         </div>
       </div>
     </div>

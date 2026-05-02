@@ -5,7 +5,7 @@
    ============================================================ */
 
 /* ── Reset & Variables ─────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; }
 
 :root {
   --bg: #FAFAFC;
@@ -50,6 +50,15 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 99px; }
+
+/* Hide scrollbar for tab container */
+.pres-tabs-container::-webkit-scrollbar {
+  display: none;
+}
+.pres-tabs-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 /* ── Hero ──────────────────────────────────────────────── */
 .hero {

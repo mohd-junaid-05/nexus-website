@@ -33,6 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/styles.css"/>
@@ -40,43 +41,59 @@
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>junaid</text></svg>"/>
 </head>
-<body>
+<body class="bg-light">
 
 <!-- ══════════════ HERO ══════════════════════════════════ -->
-<header class="hero" aria-label="Session introduction">
+<header class="hero container-fluid py-5 text-center position-relative border-bottom" aria-label="Session introduction">
   <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      NEXUS CODING CLUB  SESSION
+  <div class="hero-content container position-relative z-1 py-4">
+    <div class="badge rounded-pill bg-primary bg-opacity-10 text-primary px-3 py-2 mb-4 fs-6 fw-bold border border-primary border-opacity-25" style="letter-spacing: 1px;">
+      NEXUS CODING CLUB SESSION
     </div>
-    <h1 class="hero-title">Build Like a Startup</h1>
-    <p class="hero-sub">From raw idea to deployed product — a complete 8-stage framework</p>
+    <h1 class="display-4 fw-bold mb-3 text-dark" style="font-family: 'Outfit', sans-serif; letter-spacing: -1px;">Build Like a Startup</h1>
+    <p class="lead text-secondary mb-4 mx-auto" style="max-width: 600px;">From raw idea to deployed product — a complete 8-stage framework</p>
     
-    <div class="hero-stats" role="list" aria-label="Session overview">
-      <div class="hero-stat" role="listitem"><span class="val">7</span><span class="lbl">Stages</span></div>
-      <div class="hero-stat" role="listitem"><span class="val">90</span><span class="lbl">Minutes</span></div>
-      <div class="hero-stat" role="listitem"><span class="val">3</span><span class="lbl">AI Agents</span></div>
-      <div class="hero-stat" role="listitem"><span class="val">RACEF</span><span class="lbl">Prompts</span></div>
+    <div class="card shadow-sm mx-auto mt-2 border-0" style="border-radius: 1rem; max-width: 800px;">
+      <div class="card-body p-0 bg-white border" style="border-radius: 1rem;">
+        <div class="row g-0 text-center align-items-center">
+          <div class="col-6 col-md-3 border-end border-bottom border-md-bottom-0 p-3 p-md-4 d-flex flex-column justify-content-center">
+            <span class="fs-4 fw-bold text-dark mb-1" style="font-family: 'Outfit', sans-serif;">7</span>
+            <span class="small text-muted fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.75rem;">Stages</span>
+          </div>
+          <div class="col-6 col-md-3 border-bottom border-md-bottom-0 border-md-end p-3 p-md-4 d-flex flex-column justify-content-center">
+            <span class="fs-4 fw-bold text-dark mb-1" style="font-family: 'Outfit', sans-serif;">90</span>
+            <span class="small text-muted fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.75rem;">Minutes</span>
+          </div>
+          <div class="col-6 col-md-3 border-end p-3 p-md-4 d-flex flex-column justify-content-center">
+            <span class="fs-4 fw-bold text-dark mb-1" style="font-family: 'Outfit', sans-serif;">3</span>
+            <span class="small text-muted fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.75rem;">AI Agents</span>
+          </div>
+          <div class="col-6 col-md-3 p-3 p-md-4 d-flex flex-column justify-content-center">
+            <span class="fs-4 fw-bold text-dark mb-1 text-nowrap" style="font-family: 'Outfit', sans-serif;">RACEF</span>
+            <span class="small text-muted fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.75rem;">Prompts</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>
 
 <!-- ══════════════ INTRO CAROUSEL ══════════════════════════ -->
-<section class="intro-section" aria-label="Presentation Introduction">
-  <div class="carousel-container">
-    <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
-    <div class="carousel-track-wrapper">
-      <div class="carousel-track" id="intro-carousel-track">
+<section class="intro-section container my-5 py-4" aria-label="Presentation Introduction">
+  <div class="carousel-container card shadow-sm border-0 p-3 p-md-4 position-relative d-flex flex-row align-items-center bg-white" style="border-radius: 1.5rem; gap: 16px;">
+    <button class="btn btn-light rounded-circle shadow-sm flex-shrink-0" style="width: 48px; height: 48px; z-index: 2;" onclick="moveCarousel(-1)" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="carousel-track-wrapper flex-grow-1 overflow-hidden position-relative">
+      <div class="carousel-track d-flex" id="intro-carousel-track" style="transition: transform 0.4s ease-in-out;">
         <!-- Cards rendered here via JS -->
       </div>
     </div>
-    <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+    <button class="btn btn-light rounded-circle shadow-sm flex-shrink-0" style="width: 48px; height: 48px; z-index: 2;" onclick="moveCarousel(1)" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
-  <div class="carousel-dots" id="intro-carousel-dots"></div>
+  <div class="carousel-dots d-flex justify-content-center mt-4 gap-2" id="intro-carousel-dots"></div>
 </section>
 
 <!-- ══════════════ MAIN CONTENT (TIMELINE & CARD) ════════ -->
-<main class="main" id="stages">
+<main class="main container pb-5" id="stages">
   <div class="timeline-container">
     <!-- Visual Timeline -->
     <div class="timeline-visual" aria-hidden="true">
@@ -95,14 +112,14 @@
     </div>
 
     <!-- Pill Navigation -->
-    <div class="pill-nav">
-      <button class="pill-btn active" onclick="selectStage(0)">1. Idea</button>
-      <button class="pill-btn" onclick="selectStage(1)">2. Market ★</button>
-      <button class="pill-btn" onclick="selectStage(2)">3. Branding</button>
-      <button class="pill-btn" onclick="selectStage(3)">4. UI/UX</button>
-      <button class="pill-btn" onclick="selectStage(4)">5. Technical</button>
-      <button class="pill-btn" onclick="selectStage(5)">6. Building</button>
-      <button class="pill-btn" onclick="selectStage(6)">7. Deployment</button>
+    <div class="pill-nav d-flex flex-wrap justify-content-center gap-2 mb-5">
+      <button class="btn btn-outline-dark rounded-pill active px-4 py-2 fw-semibold" onclick="selectStage(0)">1. Idea</button>
+      <button class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold" onclick="selectStage(1)">2. Market ★</button>
+      <button class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold" onclick="selectStage(2)">3. Branding</button>
+      <button class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold" onclick="selectStage(3)">4. UI/UX</button>
+      <button class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold" onclick="selectStage(4)">5. Technical</button>
+      <button class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold" onclick="selectStage(5)">6. Building</button>
+      <button class="btn btn-outline-dark rounded-pill px-4 py-2 fw-semibold" onclick="selectStage(6)">7. Deployment</button>
     </div>
   </div>
 
@@ -111,12 +128,15 @@
 </main>
 
 <!-- ══════════════ FOOTER ═════════════════════════════════ -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-logo">NEXUS</div>
-  <p>Build Like a Startup · Session Framework</p>
+<footer class="footer py-5 bg-white border-top text-center" role="contentinfo">
+  <div class="container">
+    <div class="fs-4 fw-bold text-dark mb-2" style="font-family: 'Outfit', sans-serif; letter-spacing: 1px;">NEXUS</div>
+    <p class="text-secondary fs-6 mb-0">Build Like a Startup · Session Framework</p>
+  </div>
 </footer>
 
 <!-- ══════════════ SCRIPTS ═══════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmxc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="js/content.js" defer></script>
 <script src="js/prompts.js" defer></script>
 <script src="js/ui.js" defer></script>
