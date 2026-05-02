@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ═══════════════════════════════════════════════════
+       PRIMARY SEO META TAGS
+  ════════════════════════════════════════════════════ -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <title>Build Like a Startup — NEXUS Coding Club VP Session Framework</title>
+  <meta name="description" content="A complete 8-stage framework that teaches student developers to build like startup founders — from idea validation to live deployment and marketing."/>
+  <meta name="keywords" content="NEXUS coding club, build like a startup, student developer framework, idea validation, market analysis, branding, UI UX design, technical architecture, deployment, AI prompts, RACEF"/>
+  <meta name="author" content="NEXUS Coding Club"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://nexus-build-like-a-startup.com/"/>
+
+  <!-- ═══════════════════════════════════════════════════
+       OPEN GRAPH & TWITTER CARDS
+  ════════════════════════════════════════════════════ -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Build Like a Startup — NEXUS Coding Club"/>
+  <meta property="og:description" content="A complete 8-stage framework for students: from raw idea to live deployed product."/>
+  <meta property="og:url" content="https://nexus-build-like-a-startup.com/"/>
+  <meta property="og:image" content="https://nexus-build-like-a-startup.com/og-image.png"/>
+  <meta property="og:site_name" content="NEXUS Coding Club"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- ═══════════════════════════════════════════════════
+       FONTS & ICONS
+  ════════════════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css"/>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>"/>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════════════════════════ -->
+<header class="hero" aria-label="Session introduction">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      NEXUS CODING CLUB - VP SESSION
+    </div>
+    <h1 class="hero-title">Build Like a Startup</h1>
+    <p class="hero-sub">From raw idea to deployed product — a complete 8-stage framework</p>
+    
+    <div class="hero-stats" role="list" aria-label="Session overview">
+      <div class="hero-stat" role="listitem"><span class="val">7</span><span class="lbl">Stages</span></div>
+      <div class="hero-stat" role="listitem"><span class="val">90</span><span class="lbl">Minutes</span></div>
+      <div class="hero-stat" role="listitem"><span class="val">3</span><span class="lbl">AI Agents</span></div>
+      <div class="hero-stat" role="listitem"><span class="val">RACEF</span><span class="lbl">Prompts</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════ INTRO CAROUSEL ══════════════════════════ -->
+<section class="intro-section" aria-label="Presentation Introduction">
+  <div class="carousel-container">
+    <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="carousel-track-wrapper">
+      <div class="carousel-track" id="intro-carousel-track">
+        <!-- Cards rendered here via JS -->
+      </div>
+    </div>
+    <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+  <div class="carousel-dots" id="intro-carousel-dots"></div>
+</section>
+
+<!-- ══════════════ MAIN CONTENT (TIMELINE & CARD) ════════ -->
+<main class="main" id="stages">
+  <div class="timeline-container">
+    <!-- Visual Timeline -->
+    <div class="timeline-visual" aria-hidden="true">
+      <div class="timeline-line"></div>
+      <div class="timeline-progress" id="timeline-progress"></div>
+      
+      <div class="timeline-points">
+        <div class="t-point active" onclick="selectStage(0)"><div class="t-dot"></div><div class="t-label"><span class="t-num">1</span><br>Idea</div></div>
+        <div class="t-point" onclick="selectStage(1)"><div class="t-dot"></div><div class="t-label"><span class="t-num">2</span><br>Market</div></div>
+        <div class="t-point" onclick="selectStage(2)"><div class="t-dot"></div><div class="t-label"><span class="t-num">3</span><br>Branding</div></div>
+        <div class="t-point" onclick="selectStage(3)"><div class="t-dot"></div><div class="t-label"><span class="t-num">4</span><br>UI/UX</div></div>
+        <div class="t-point" onclick="selectStage(4)"><div class="t-dot"></div><div class="t-label"><span class="t-num">5</span><br>Technical</div></div>
+        <div class="t-point" onclick="selectStage(5)"><div class="t-dot"></div><div class="t-label"><span class="t-num">6</span><br>Building</div></div>
+        <div class="t-point" onclick="selectStage(6)"><div class="t-dot"></div><div class="t-label"><span class="t-num">7</span><br>Deployment</div></div>
+      </div>
+    </div>
+
+    <!-- Pill Navigation -->
+    <div class="pill-nav">
+      <button class="pill-btn active" onclick="selectStage(0)">1. Idea</button>
+      <button class="pill-btn" onclick="selectStage(1)">2. Market ★</button>
+      <button class="pill-btn" onclick="selectStage(2)">3. Branding</button>
+      <button class="pill-btn" onclick="selectStage(3)">4. UI/UX</button>
+      <button class="pill-btn" onclick="selectStage(4)">5. Technical</button>
+      <button class="pill-btn" onclick="selectStage(5)">6. Building</button>
+      <button class="pill-btn" onclick="selectStage(6)">7. Deployment</button>
+    </div>
+  </div>
+
+  <!-- Stage Presentation Card (Updated dynamically by JS) -->
+  <div id="presentation-card-container"></div>
+</main>
+
+<!-- ══════════════ FOOTER ═════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-logo">NEXUS</div>
+  <p>Build Like a Startup · VP Session Framework</p>
+</footer>
+
+<!-- ══════════════ SCRIPTS ═══════════════════════════════ -->
+<script src="js/content.js" defer></script>
+<script src="js/prompts.js" defer></script>
+<script src="js/ui.js" defer></script>
+
+</body>
+</html>
