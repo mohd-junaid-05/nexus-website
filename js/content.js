@@ -49,18 +49,26 @@ const INTRO_SLIDES = [
     </ul>`
   },
   {
-    title: "Technical Architecture",
+    title: "Technical Architecture & APIs",
     icon: "fa-solid fa-server",
     color: "#059669",
-    content: `To build modern apps quickly, we use a specific combination of technologies called a "Tech Stack."
+    content: `To build modern apps, we use a simple and powerful "Tech Stack."
     <br><br>
     <strong>The Beginner-Friendly Startup Stack:</strong>
     <ul style="margin-top: 8px; padding-left: 20px; line-height: 1.6;">
-      <li><strong>Next.js & React:</strong> The framework that builds our user interface. It makes clicking between pages lightning fast.</li>
-      <li><strong>Tailwind CSS:</strong> A tool that lets us style our website (colors, spacing, sizes) directly in our HTML code without writing complex CSS files.</li>
-      <li><strong>Supabase:</strong> Our database. It stores user accounts and app data securely.</li>
-      <li><strong>Vercel / Render:</strong> The platform that takes our code and puts it live on the internet.</li>
-    </ul>`
+      <li><strong>Frontend (HTML/CSS/JS):</strong> The visual part of the website that users interact with.</li>
+      <li><strong>Backend (Node.js):</strong> The brain behind the scenes that handles logic, databases, and secure operations.</li>
+    </ul>
+    <br>
+    <strong>How it works (The API):</strong>
+    <div style="background:var(--bg); border:1px solid var(--border); padding:16px; border-radius:var(--r-md); text-align:center; margin-top:12px; font-family:'JetBrains Mono', monospace; font-size:13px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="flex:1; padding:8px; border:1px dashed var(--accent); border-radius:4px; color:var(--text);"><strong>Frontend</strong><br><small>(Browser)</small></div>
+        <div style="flex:1;"><i class="fa-solid fa-arrow-right" style="color:var(--text3);"></i><br><small style="color:var(--text2); font-size:10px;">API Request</small><br><i class="fa-solid fa-arrow-left" style="color:var(--text3);"></i></div>
+        <div style="flex:1; padding:8px; border:1px dashed #059669; border-radius:4px; color:var(--text);"><strong>Backend</strong><br><small>(Node.js Server)</small></div>
+      </div>
+      <p style="margin-top:12px; font-size:12px; color:var(--text2);">The Frontend sends an "API Request" (like placing an order). The Backend processes it and sends an "API Response" (like delivering the food).</p>
+    </div>`
   },
   {
     title: "Deployment & Hosting (Render)",
@@ -134,10 +142,59 @@ const STAGE_CONTENT = [
       "Define exactly who suffers from this problem and why current solutions fail them"
     ],
 
-    liveExercise: {
-      title: "The Idea Teardown",
-      duration: "5 mins",
-      description: "Ask a volunteer to share their raw app idea. Ask them: 'Who exactly is suffering from this right now?' and 'How are they solving it today without your app?' Show the audience how fast an idea falls apart if there is no real pain."
+    resources: {
+      title: "Idea Validation Tools",
+      links: [
+        { name: "Y Combinator's Startup School", url: "https://www.startupschool.org/", desc: "Free course on finding and evaluating startup ideas." },
+        { name: "Lean Canvas", url: "https://leanstack.com/lean-canvas", desc: "A 1-page business plan template for validating problem-solution fit." },
+        { name: "Mom Test Framework", url: "https://www.momtestbook.com/", desc: "How to talk to customers and learn if your business is a good idea." }
+      ]
+    },
+
+    ideaBank: {
+      title: "Vast-Scale Landing Page MVP Ideas (HMW)",
+      categories: [
+        {
+          name: "Curated Directories & Listings",
+          ideas: [
+            "HMW help remote workers instantly find local coffee shops with guaranteed fast Wi-Fi and power outlets?",
+            "HMW help indie game developers easily discover and hire affordable voice actors for their characters?",
+            "HMW help junior developers find entry-level tech jobs at fast-growing startups without competing on massive job boards?"
+          ]
+        },
+        {
+          name: "Productized Services",
+          ideas: [
+            "HMW help small e-commerce brands get high-quality product photography without hiring an expensive local agency?",
+            "HMW help busy YouTubers completely outsource their thumbnail creation to proven, high-converting designers?",
+            "HMW help local restaurants get a modern, mobile-friendly website setup in under 48 hours for a flat fee?"
+          ]
+        },
+        {
+          name: "Simple SaaS & Calculators",
+          ideas: [
+            "HMW help freelance designers accurately calculate what they should charge for a project to remain profitable?",
+            "HMW help content creators automatically generate perfect, highly-searched SEO tags for their videos?",
+            "HMW help small business owners calculate their exact carbon footprint and find simple ways to offset it?"
+          ]
+        },
+        {
+          name: "Niche Newsletters (Lead Capture)",
+          ideas: [
+            "HMW help busy parents discover quick, healthy, 15-minute dinner recipes tailored to their kids' allergies?",
+            "HMW help real estate investors automatically receive alerts about undervalued properties in their specific zip code?",
+            "HMW help marathon runners get a weekly training schedule tailored exactly to their current fitness level?"
+          ]
+        },
+        {
+          name: "Pre-sale & Vision Waitlists",
+          ideas: [
+            "HMW help independent coffee roasters sell curated, monthly bean subscriptions directly to enthusiasts nationwide?",
+            "HMW help amateur athletes track their personal records and see how they rank against people in their exact age group?",
+            "HMW help pet owners buy customized, healthy meal plans for their dogs based on breed and weight?"
+          ]
+        }
+      ]
     },
 
     // EXTRA NOTES — editable container (add your own points here)
@@ -197,10 +254,13 @@ const STAGE_CONTENT = [
       "Generate all content before writing a single line of UI code"
     ],
 
-    liveExercise: {
-      title: "Back-of-the-Napkin TAM",
-      duration: "3 mins",
-      description: "Take the volunteer's idea from Stage 1. Ask the audience to guess how many people in India have this problem. Multiply by a realistic yearly price (e.g., ₹500). Show them the actual Total Addressable Market live on a calculator."
+    resources: {
+      title: "Market Research Tools",
+      links: [
+        { name: "SimilarWeb", url: "https://www.similarweb.com/", desc: "Analyze competitor website traffic and user demographics." },
+        { name: "Google Trends", url: "https://trends.google.com/", desc: "Explore what the world is searching for and identify rising market trends." },
+        { name: "Exploding Topics", url: "https://explodingtopics.com/", desc: "Discover rapidly growing topics and industries before they take off." }
+      ]
     },
 
     extraHeading: "Session Notes",
@@ -259,10 +319,14 @@ const STAGE_CONTENT = [
       "Choose one icon library (Lucide, Phosphor, or Heroicons) and never mix them"
     ],
 
-    liveExercise: {
-      title: "Color Psychology Match",
-      duration: "3 mins",
-      description: "Name 3 massive companies (e.g., Facebook, Spotify, Netflix) and ask the audience to shout out their primary color. Ask *why* those colors were chosen (Trust/Blue, Growth/Green, Excitement/Red). Then ask what color the volunteer's app should be."
+    resources: {
+      title: "Branding & Identity Tools",
+      links: [
+        { name: "Namelix", url: "https://namelix.com/", desc: "AI-powered business name generator." },
+        { name: "Looka", url: "https://looka.com/", desc: "AI logo maker and brand identity creator." },
+        { name: "Coolors", url: "https://coolors.co/", desc: "Super fast color palettes generator." },
+        { name: "Fontshare", url: "https://www.fontshare.com/", desc: "Free, high-quality fonts for your web app." }
+      ]
     },
 
     // SEO CONCEPTS — only stage 3 has this special section
@@ -338,43 +402,46 @@ const STAGE_CONTENT = [
     cards: [
       {
         icon: "fa-solid fa-hammer",
-        title: "Website anatomy",
-        text: "Navbar → Hero → Problem section → Features → How it works → Social proof → CTA → Footer. Every professional site follows this pattern because it maps to how users make decisions before converting."
+        title: "The Common Website Anatomy",
+        text: "Navbar (Navigation) → Hero (Headline & CTA) → Trust Bar (Logos) → Problem/Solution → Features → Testimonials → Final CTA → Footer. Every professional site uses this psychological flow."
       },
       {
-        icon: "fa-mobile-screen",
-        title: "Mobile-first thinking",
-        text: "68% of web traffic is mobile. If your site breaks on a phone, you've lost the majority of your users before they read a single word. Tailwind's sm: md: lg: prefixes make responsive design systematic."
+        icon: "fa-solid fa-magnifying-glass",
+        title: "Perfect Example: Tally.so",
+        text: "Go to tally.so. It is the perfect textbook example: Hero ('Simplest way to create forms') → Trust Bar → Pain/Solution ('Say goodbye to boring forms') → How It Works ('Just start typing') → Features → Testimonials → Final CTA."
       },
       {
-        icon: "fa-solid fa-pen",
-        title: "Paper wireframes first",
-        text: "Three boxes on a page is a wireframe. Sketch the layout on paper before opening any tool. This takes 5 minutes and saves 2 hours of redesigning in Figma that never gets built."
+        icon: "fa-solid fa-layer-group",
+        title: "Core MVP Pages",
+        text: "You only need 3 pages: 1. Landing Page (to sell the idea). 2. Authentication/Login (to capture users). 3. Dashboard (where the actual product lives). Keep it strictly minimal."
       },
       {
-        icon: "fa-solid fa-bolt",
-        title: "MVP = 3 pages max",
-        text: "Landing page → Auth (sign up/login) → Dashboard. That's a complete MVP. Every page beyond that is a feature you're adding before validating the core. Ship 3 pages first, then expand."
+        icon: "fa-solid fa-border-all",
+        title: "Sections are just boxes",
+        text: "When you look at a website, don't see magic. See boxes. A Hero section is just a big container box with text boxes on the left and an image box on the right. Thinking in boxes makes CSS easy."
       }
     ],
 
     studentMindset: [
-      "Jump straight into Figma without sketching anything",
-      "Design 10 screens before building a single one",
-      "Build desktop-only and 'fix mobile later' — you never will",
-      "Create custom UI components when a library already has them"
+      "Try to invent completely new, confusing website layouts",
+      "Design 10 different pages before finishing the core homepage",
+      "Look at a website and get overwhelmed by the complexity",
+      "Skip the standard Hero section and start immediately with features"
     ],
     founderMindset: [
-      "Sketch wireframes on paper first — literally 3 boxes per page",
-      "Commit to a maximum of 4 pages for the MVP",
-      "Design mobile-first using Tailwind responsive prefixes from line one",
-      "Use a UI component library (shadcn, Flowbite, DaisyUI) and customise from there"
+      "Use established website patterns (Hero → Trust → Features → CTA)",
+      "Commit to a maximum of 3 pages for the initial MVP",
+      "Analyze websites by breaking them down into simple boxes and containers",
+      "Study perfect real-world examples like Tally.so or Loom.com to copy their section flows"
     ],
 
-    liveExercise: {
-      title: "The 60-Second Wireframe",
-      duration: "4 mins",
-      description: "Have everyone take out a pen and paper. Give them exactly 60 seconds to draw a Hero section (Header, Headline, Subhead, CTA button). Show them that they don't need Figma to design."
+    resources: {
+      title: "UI/UX & Design Inspiration",
+      links: [
+        { name: "Figma", url: "https://www.figma.com/", desc: "The industry standard for collaborative interface design." },
+        { name: "Mobbin", url: "https://mobbin.com/", desc: "Explore real-world UI design patterns from top apps." },
+        { name: "Land-book", url: "https://land-book.com/", desc: "Landing page design inspiration gallery." }
+      ]
     },
 
     extraHeading: "Session Notes",
@@ -393,50 +460,53 @@ const STAGE_CONTENT = [
     agent: "Tech Agent",
     colorKey: "teal",
 
-    why: `Students often choose a tech stack based on what sounds impressive or what they saw in a YouTube thumbnail. The result is a project that's over-engineered, uses technologies that fight each other, and collapses under its own complexity before the first feature is finished.`,
+    why: `Students often choose complex tech stacks that they don't understand. The result is a project that's over-engineered and collapses under its own complexity. We use plain HTML, CSS, and JS for the frontend, and Node.js for the backend. It's clean, simple, and exactly what you need to understand the fundamentals.`,
 
-    importance: `Technical planning is where you make the decisions that determine whether your project succeeds or stalls. The right stack for a beginner MVP is boring, proven, and fast to ship. The Technical Agent gives you a complete blueprint — folder structure, database schema, API integrations — so you start coding with a plan instead of making it up as you go.`,
+    importance: `Technical planning is where you determine how your frontend communicates with your backend. By mapping out your API endpoints and database schema early, you create a solid bridge between what the user sees (HTML/CSS) and where the data is stored (Node.js).`,
 
     cards: [
       {
-        icon: "fa-solid fa-building-columns",
-        title: "Tech stack = 4 decisions",
-        text: "Frontend framework + styling library + backend/database + hosting. For beginners: Next.js + Tailwind + Supabase + Vercel. Four decisions. Make them in 5 minutes. Move on and build."
+        icon: "fa-brands fa-html5",
+        title: "The Frontend (HTML/CSS/JS)",
+        text: "HTML provides the structure. CSS provides the styling and layout. Vanilla JavaScript handles user clicks, form submissions, and calling the API. No complex frameworks needed."
       },
       {
-        icon: "fa-solid fa-folder",
-        title: "Folder structure before code",
-        text: "/components (UI pieces), /app (pages/routes), /utils (helper functions), /lib (API calls), /hooks (custom logic). Set this structure up before writing a single feature — it shapes everything."
+        icon: "fa-brands fa-node-js",
+        title: "The Backend (Node.js)",
+        text: "Your Node.js server is the brain. It runs securely away from the user, connects to your database, processes passwords, and sends the correct data back to the frontend."
       },
       {
-        icon: "fa-solid fa-database",
-        title: "Database schema",
-        text: "What tables do you need? What fields? How do they relate? Drawing this out before coding prevents you from refactoring your database 3 times during the build phase."
+        icon: "fa-solid fa-folder-tree",
+        title: "Proper Folder Structure",
+        text: "Keep it separated: a /public folder for your frontend (index.html, style.css, app.js) and a /src folder for your backend (server.js, routes). A clean structure prevents messy, tangled code."
       },
       {
         icon: "fa-solid fa-plug",
         title: "What is an API?",
-        text: "An API is a door between your frontend and external services. When you log in with Google, your app talks to Google's API — it never touches Google's database. It just sends the right request and gets the right response back."
+        text: "An API is a bridge. When a user clicks 'Login' on the frontend, JavaScript sends an API request to your Node.js backend. The backend checks the database, then sends an API response back."
       }
     ],
 
     studentMindset: [
-      "Pick the most impressive tech stack to look advanced",
-      "Start coding features before planning the database structure",
-      "Hardcode API keys directly inside the source code",
-      "Create files randomly without any folder organisation plan"
+      "Pick the most complicated framework just to look advanced",
+      "Start coding features without understanding how the frontend talks to the backend",
+      "Write all logic in the frontend, exposing sensitive data to users",
+      "Dump all files into one folder and make a mess of the codebase"
     ],
     founderMindset: [
-      "Use the beginner stack: Next.js + Tailwind + Supabase + Vercel",
-      "Set up the folder structure on day one before any feature code",
-      "Store all secrets in a .env file from the very first line",
-      "Draw the database schema before writing any model or query code"
+      "Use the most reliable, easy-to-understand stack: HTML/CSS/JS + Node.js",
+      "Draw out the API requests before writing any server code",
+      "Understand that the backend is the secure brain of the operation",
+      "Set up a proper folder structure before writing a single line of code"
     ],
 
-    liveExercise: {
-      title: "Whiteboard the Database",
-      duration: "5 mins",
-      description: "Draw two boxes on the whiteboard: 'Users' and 'Posts'. Ask the audience what columns go in each table. Connect them with a line to visually demonstrate a foreign key (user_id). This demystifies databases instantly."
+    resources: {
+      title: "Technical Architecture Tools",
+      links: [
+        { name: "Node.js Documentation", url: "https://nodejs.org/en/docs/", desc: "The JavaScript runtime for the backend." },
+        { name: "MDN Web Docs (HTML/CSS/JS)", url: "https://developer.mozilla.org/", desc: "The definitive resource for frontend web development." },
+        { name: "Draw.io", url: "https://app.diagrams.net/", desc: "Free tool for drawing database schemas and technical architectures." }
+      ]
     },
 
     extraHeading: "Session Notes",
@@ -495,10 +565,13 @@ const STAGE_CONTENT = [
       "Make one live edit to demonstrate hot reload before moving to deployment"
     ],
 
-    liveExercise: {
-      title: "The Live Generation",
-      duration: "7 mins",
-      description: "Open Claude live on screen. Paste the Master Prompt. Fill in the brackets dynamically by asking the audience for input. Hit enter and watch the audience react as a full codebase is generated in 15 seconds."
+    resources: {
+      title: "AI Development Assistants",
+      links: [
+        { name: "Claude (Anthropic)", url: "https://claude.ai/", desc: "Excellent AI for writing code and understanding large context windows." },
+        { name: "v0 by Vercel", url: "https://v0.dev/", desc: "Generate UI directly from text prompts." },
+        { name: "ChatGPT (OpenAI)", url: "https://chatgpt.com/", desc: "Powerful AI assistant for debugging and general coding help." }
+      ]
     },
 
     extraHeading: "Session Notes",
@@ -557,10 +630,13 @@ const STAGE_CONTENT = [
       "Test the live URL on your phone before sharing it with a single person"
     ],
 
-    liveExercise: {
-      title: "Push to Live",
-      duration: "5 mins",
-      description: "Take the project you generated in Stage 6, push it to GitHub, and link it to Vercel. Have a stopwatch running. Show the audience that it takes less than 3 minutes to go from local code to a live internet URL."
+    resources: {
+      title: "Deployment & Hosting Platforms",
+      links: [
+        { name: "Vercel", url: "https://vercel.com/", desc: "The easiest way to deploy Next.js apps globally." },
+        { name: "Render", url: "https://render.com/", desc: "Unified cloud to build and run all your apps and websites." },
+        { name: "GitHub", url: "https://github.com/", desc: "Industry standard for code version control and collaboration." }
+      ]
     },
 
     extraHeading: "Session Notes",

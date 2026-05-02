@@ -258,7 +258,8 @@ function renderPresentationCard(index) {
           <button class="pres-tab-btn active" data-tab="checklist" onclick="switchTab('checklist')">Core Concepts</button>
           <button class="pres-tab-btn" data-tab="prompts" onclick="switchTab('prompts')">AI Prompts</button>
           <button class="pres-tab-btn" data-tab="mindset" onclick="switchTab('mindset')">Mindset Shift</button>
-          <button class="pres-tab-btn" data-tab="exercise" onclick="switchTab('exercise')">Live Exercise</button>
+          <button class="pres-tab-btn" data-tab="resources" onclick="switchTab('resources')">Resources</button>
+          ${stageData.ideaBank ? `<button class="pres-tab-btn" data-tab="ideabank" onclick="switchTab('ideabank')">Idea Bank</button>` : ''}
         </div>
         
         <!-- Tab 1: Checklist -->
@@ -289,20 +290,49 @@ function renderPresentationCard(index) {
           </div>
         </div>
 
-        <!-- Tab 4: Live Exercise -->
-        <div class="pres-content" id="tab-content-exercise">
+        <!-- Tab 4: Resources -->
+        <div class="pres-content" id="tab-content-resources">
           <div style="background: ${col.light}; border: 1px solid ${col.border}; border-radius: var(--r-md); padding: 24px;">
-             <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; color: ${col.hex}; margin-bottom: 8px;">
-               <i class="fa-solid fa-person-chalkboard"></i> ${stageData.liveExercise.title}
+             <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; color: ${col.hex}; margin-bottom: 16px;">
+               <i class="fa-solid fa-link"></i> ${stageData.resources?.title || 'Resources'}
              </h3>
-             <p style="font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 16px;">
-               <i class="fa-regular fa-clock"></i> Duration: ${stageData.liveExercise.duration}
-             </p>
-             <p style="font-size: 15px; color: var(--text2); line-height: 1.6;">
-               ${stageData.liveExercise.description}
-             </p>
+             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+               ${stageData.resources?.links?.map(link => `
+                 <li style="background: var(--bg); border: 1px solid var(--border); padding: 12px; border-radius: var(--r-sm);">
+                   <a href="${link.url}" target="_blank" style="color: ${col.hex}; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                     ${link.name} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i>
+                   </a>
+                   <p style="font-size: 13px; color: var(--text2); margin: 0;">${link.desc}</p>
+                 </li>
+               `).join('') || '<p>No resources available.</p>'}
+             </ul>
           </div>
         </div>
+
+        <!-- Tab 5: Idea Bank (Optional) -->
+        ${stageData.ideaBank ? `
+        <div class="pres-content" id="tab-content-ideabank">
+          <div style="background: ${col.light}; border: 1px solid ${col.border}; border-radius: var(--r-md); padding: 24px;">
+             <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; color: ${col.hex}; margin-bottom: 16px;">
+               <i class="fa-solid fa-lightbulb"></i> ${stageData.ideaBank.title}
+             </h3>
+             <div style="display: flex; flex-direction: column; gap: 16px;">
+               ${stageData.ideaBank.categories.map(cat => `
+                 <div style="background: var(--bg); border: 1px solid var(--border); padding: 16px; border-radius: var(--r-sm);">
+                   <h4 style="color: ${col.hex}; margin-bottom: 12px; font-size: 15px;"><i class="fa-solid fa-folder-open"></i> ${cat.name}</h4>
+                   <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+                     ${cat.ideas.map(idea => `
+                       <li style="font-size: 13.5px; color: var(--text2); display: flex; align-items: flex-start; gap: 8px;">
+                         <i class="fa-solid fa-arrow-right" style="color: ${col.hex}; margin-top: 4px; font-size: 10px;"></i>
+                         <span>${idea}</span>
+                       </li>
+                     `).join('')}
+                   </ul>
+                 </div>
+               `).join('')}
+             </div>
+          </div>
+        </div>` : ''}
 
       </div>
 

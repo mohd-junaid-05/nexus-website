@@ -39,9 +39,7 @@ Enhance the draft opportunity statement below. Give me three completely differen
         label: "Generate 5 Ideas",
         importance: "Brainstorm multiple product angles for the same problem.",
         text: `From Opportunity to List of Ideas
-Generate 5 unique product ideas to tackle the opportunity statement:
-
-"[PASTE FINAL OPPORTUNITY STATEMENT FROM PREVIOUS PROMPT HERE]"
+Generate 5 unique product ideas to tackle the refined opportunity statement we just created.
 
 Offer up a range of ideas that cover the spectrum from outrageous to practical. The ideas should challenge the status quo and seek to disrupt the market. The ideas should excite and energize, be written from an ambitious abundance perspective, have huge potential, and be brief and to the point. Highlight how the idea disrupts the current status quo.`
       },
@@ -79,9 +77,8 @@ FORMAT: Use structured formats like tables for market sizing and clearly labeled
       {
         label: "Calculate TAM",
         importance: "Estimate the market size using logical assumptions.",
-        text: `Calculate the TAM, SAM, and SOM for my product idea:
+        text: `Calculate the TAM, SAM, and SOM for our winning product idea.
 
-"[PASTE YOUR WINNING IDEA HERE]"
 Target Geography: [e.g., India, Global, US]
 Target Demographic: [e.g., College students, Freelancers, Small business owners]
 Estimated Yearly Price: [e.g., ₹1000]
@@ -94,9 +91,7 @@ I don't need exact verified statistics, but I need you to use logical, realistic
       {
         label: "Competitor Analysis",
         importance: "Identify who is currently solving this problem and where they fail.",
-        text: `Based on my product idea: "[PASTE YOUR WINNING IDEA HERE]"
-
-Identify 3 real-world competitors (or the closest alternatives if it's completely novel). For each competitor, provide:
+        text: `Based on our winning product idea, identify 3 real-world competitors (or the closest alternatives if it's completely novel). For each competitor, provide:
 1. Their core value proposition (what they promise).
 2. Their primary target audience.
 3. Their biggest weakness (what users complain about the most).
@@ -107,11 +102,8 @@ Format the output as a clear, easy-to-read table.`
       {
         label: "Generate Copy",
         importance: "Write the text for your landing page before touching any code.",
-        text: `Now, I need you to act as a world-class copywriter. Write the complete content for a high-converting landing page for my product.
+        text: `Now, I need you to act as a world-class copywriter. Write the complete content for a high-converting landing page based on everything we've discussed so far.
         
-Product Name: [YOUR PRODUCT NAME]
-Core Benefit: [WHAT IS THE BIGGEST THING IT DOES?]
-
 Please provide the following sections:
 1. Hero Header: A punchy, 5-to-8 word headline that grabs attention.
 2. Hero Sub-header: A 1-2 sentence explanation of what the product does and who it is for.
@@ -129,20 +121,18 @@ Please provide the following sections:
       has: true,
       name: "Innovation Agent",
       importance: "Re-engage the Innovation Agent for creative branding decisions.",
-      prompt: `ROLE: You are an expert Brand Strategist and Creative Director. You specialize in creating cohesive, emotionally resonant brand identities for modern tech startups.
-ACTION: Help me define the complete visual identity, naming, and brand system for my product.
-CONTEXT: I have the product idea and the marketing copy. Now I need the visual language. The brand needs to look professional, modern, and instantly trustworthy.
-EXPECTATION: You will provide specific, actionable design choices—including exact hex codes, specific Google Fonts, and clear reasoning for why these choices fit the product's market and target audience.
+      prompt: `We are continuing our work on the same product. You have been acting as my Innovation Strategist, but I now need you to put on a new hat.
+ROLE: Shift your role to act as an expert Brand Strategist and Creative Director.
+ACTION: Based on the product idea, market analysis, and copy we've defined above, help me create its complete visual identity, naming, and brand system.
+EXPECTATION: You will provide specific, actionable design choices—including exact hex codes, specific Google Fonts, and clear reasoning for why these choices fit our product's specific market.
 FORMAT: Provide lists, exact codes, and brief explanations for the psychology behind each choice.`
     },
     prompts: [
       {
         label: "Brand Identity Kit",
         importance: "Generate the colors, fonts, and styling for the project.",
-        text: `Generate a complete Brand Identity Kit for my product.
+        text: `Generate a complete Brand Identity Kit for our product.
 
-Product Description: "[PASTE YOUR WINNING IDEA HERE]"
-Target Audience: "[YOUR TARGET AUDIENCE]"
 Desired Vibe/Emotion: [e.g., Trustworthy and Professional, Playful and Energetic, Dark and Sleek]
 
 I need you to provide:
@@ -171,10 +161,10 @@ For each name, provide a one-sentence tagline that incorporates the name natural
       has: true,
       name: "Innovation Agent",
       importance: "Use the agent to plan the layout before coding.",
-      prompt: `ROLE: You are a Senior UX/UI Designer. You specialize in designing high-converting, user-friendly, and accessible web interfaces.
-ACTION: Help me structure the layout and user flow of my application.
-CONTEXT: We have the brand kit and the copy. We are now ready to map out exactly what sections need to exist on the screen and in what order. We are focusing on a mobile-first, clean, modern design.
-EXPECTATION: You will define the exact anatomical structure of the pages. You will tell me what components go where. You will prioritize clarity and conversion over unnecessary complexity.
+      prompt: `We are continuing our work on the same product.
+ROLE: Now, shift your role to act as a Senior UX/UI Designer.
+ACTION: Help me structure the layout and user flow of our application based on all the copy and branding we've developed so far.
+EXPECTATION: Define the exact anatomical structure of the pages. Tell me exactly what UI components go where. Prioritize clarity and conversion for our specific user persona over unnecessary complexity.
 FORMAT: Use a top-to-bottom list format detailing each section of the page.`
     },
     prompts: [
@@ -205,36 +195,20 @@ For each page, describe its primary function and the 2 most important UI compone
       has: true,
       name: "Tech Agent",
       importance: "Switch to the Tech Agent for architecture and database planning.",
-      prompt: `ROLE: You are a Senior Full-Stack Software Engineer and Systems Architect. You specialize in building scalable, modern web applications using React, Next.js, Tailwind CSS, and Supabase.
-ACTION: Act as my technical co-founder. Help me plan the database schema, file structure, and technical requirements before I start writing code.
-CONTEXT: I am a beginner developer. I want to build a functional MVP quickly. We will use Next.js for the frontend, Tailwind for styling, and Supabase for the database and authentication.
-EXPECTATION: Your advice must be practical, beginner-friendly, and highly structured. Avoid over-engineering. Give me exact folder structures and clear database tables. Explain technical concepts simply.
-FORMAT: Use code blocks for file structures and tables for database schemas.`
+      prompt: `ROLE: You are a Senior Full-Stack Software Engineer and Systems Architect. You specialize in building robust web applications using HTML, CSS, vanilla JavaScript, and Node.js.
+ACTION: Act as my technical co-founder. Help me plan the file structure and API endpoints before I start writing code.
+CONTEXT: I am a beginner developer. I want to build a functional MVP quickly. We will use plain HTML/CSS/JS for the frontend and Node.js for the backend.
+EXPECTATION: Your advice must be practical, beginner-friendly, and highly structured. Avoid over-engineering. Give me exact folder structures. Explain technical concepts simply.
+FORMAT: Use code blocks for file structures.`
     },
     prompts: [
       {
-        label: "Database Schema",
-        importance: "Plan your data tables before writing code.",
-        text: `Design the database schema for my MVP using Supabase (PostgreSQL).
-
-Product: "[PASTE PRODUCT IDEA]"
-Core features: "[BRIEFLY LIST 2-3 MAIN FEATURES]"
-
-Please provide the tables required. Keep it as simple as possible.
-For each table, provide:
-1. Table Name
-2. Columns (Name, Data Type, and a brief description of what it stores)
-3. Indicate the Primary Keys and Foreign Keys to show how the tables relate to each other.
-
-Format this as clear markdown tables.`
-      },
-      {
         label: "Folder Structure",
         importance: "Plan where every file will live in your project.",
-        text: `Provide the ideal Next.js (App Router) folder and file structure for my MVP.
+        text: `Provide the ideal HTML/CSS/JS and Node.js folder and file structure for my MVP.
 
 Please give me a visual tree representation of the folders and files. 
-Include essential folders like /app, /components, /lib, and /public. 
+Include essential folders like /public (for html/css/js frontend) and /src (for node.js backend routes/controllers). 
 Add a brief 1-sentence comment next to the most important files explaining what they do.`
       }
     ]
@@ -246,17 +220,17 @@ Add a brief 1-sentence comment next to the most important files explaining what 
       has: true,
       name: "Tech Agent",
       importance: "The Tech Agent will now write the actual code.",
-      prompt: `ROLE: You are an elite Full-Stack Developer specializing in Next.js, React, Tailwind CSS, and modern web development.
+      prompt: `ROLE: You are an elite Full-Stack Developer specializing in HTML, CSS, vanilla JavaScript, and Node.js backend development.
 ACTION: Write complete, production-ready, beautiful code for my application based on the exact specifications I provide.
 CONTEXT: We have completed all planning. I will provide a 'Master Prompt' containing the brand kit, copy, and layout. You must generate the code for this application.
-EXPECTATION: You will write clean, well-commented, and highly modular code. You must implement the specific brand colors and fonts I provide. You must make the design responsive (mobile-first) using Tailwind. The UI should look modern and premium.
+EXPECTATION: You will write clean, well-commented code. You must implement the specific brand colors and fonts I provide. You must make the design responsive (mobile-first) using custom CSS. The UI should look modern and premium.
 FORMAT: Provide the code in clearly labeled code blocks with the exact file path at the top of each block.`
     },
     prompts: [
       {
         label: "The Master Prompt",
         importance: "The final, massive prompt that generates your entire app.",
-        text: `I want you to build a complete, single-page landing page application using Next.js (React) and Tailwind CSS. 
+        text: `I want you to build a complete application using plain HTML, CSS, and vanilla JS for the frontend, and Node.js for the backend. 
 Below are the exact specifications. You must follow them strictly.
 
 === 1. BRAND KIT ===
@@ -275,11 +249,12 @@ Features:
 3. [FEATURE 3]
 
 === 3. TECHNICAL REQUIREMENTS ===
-- Use Lucide-React for icons.
-- Ensure the layout is fully responsive using Tailwind breakpoints (sm:, md:, lg:).
+- Use FontAwesome for icons via CDN.
+- Ensure the layout is fully responsive using standard CSS media queries.
 - Create a modern, premium aesthetic with subtle hover effects and appropriate padding.
+- Provide a simple Node.js Express server to serve the frontend files.
 
-Please generate the complete, runnable code for this page. Break it down into appropriate components if necessary.`
+Please generate the complete, runnable code. Provide the exact file paths (e.g. index.html, style.css, server.js) at the top of each code block.`
       }
     ]
   },
@@ -296,12 +271,12 @@ Please generate the complete, runnable code for this page. Break it down into ap
       {
         label: "Render Deployment Steps",
         importance: "Get instructions on how to push the code live.",
-        text: `I have built my Next.js application locally and pushed the code to a GitHub repository. 
-I want to deploy it to the internet for free using Render.com.
+        text: `I have built my Node.js application locally and pushed the code to a GitHub repository. 
+I want to deploy it to the internet for free using Render.com as a Web Service.
 
-Please give me a step-by-step, beginner-friendly guide on exactly how to deploy a Next.js app to Render. 
+Please give me a step-by-step, beginner-friendly guide on exactly how to deploy a Node.js app to Render. 
 Include:
-1. What settings I need to choose in the Render dashboard (Build Command, Start Command).
+1. What settings I need to choose in the Render dashboard (Build Command, Start Command like 'node server.js').
 2. How to add my Environment Variables.
 3. How to check the deployment logs if something goes wrong.`
       },
